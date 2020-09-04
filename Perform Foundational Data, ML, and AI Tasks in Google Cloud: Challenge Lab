@@ -1,3 +1,20 @@
+gsutil cp gs://cloud-training/gsp323/lab.csv .
+
+cat lab.csv
+
+gsutil cp gs://cloud-training/gsp323/lab.schema .
+
+cat lab.schema
+
+
+
+
+
+
+
+
+
+
 gcloud iam service-accounts create my-natlang-sa \
   --display-name "my natural language service account"
 
@@ -13,9 +30,9 @@ gsutil cp result.json gs://YOUR_PROJECT-marking/task4-cnl.result
 
 
 
+nano request.json
 
 
-Create the file request.json with:
 {
   "config": {
       "encoding":"FLAC",
@@ -42,7 +59,7 @@ gcloud auth activate-service-account --key-file key.json
 export ACCESS_TOKEN=$(gcloud auth print-access-token)
 
 
-
+nano request.json
 
 {
    "inputUri":"gs://spls/gsp154/video/chicago.mp4",
