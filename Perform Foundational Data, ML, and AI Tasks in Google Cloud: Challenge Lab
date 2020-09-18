@@ -1,3 +1,7 @@
+# VIEW FULL LAB: https://www.youtube.com/watch?v=LfWcNrkMwQs
+# TO GET LAB SCHEMA:
+
+
 gsutil cp gs://cloud-training/gsp323/lab.csv .
 
 cat lab.csv
@@ -11,8 +15,7 @@ cat lab.schema
 
 
 
-
-
+# TASK 4 - PART 1 - CLOUD NATURAL LANGUAGE:
 
 
 gcloud iam service-accounts create my-natlang-sa \
@@ -30,8 +33,10 @@ gsutil cp result.json gs://YOUR_PROJECT-marking/task4-cnl.result
 
 
 
-nano request.json
+# TASK 4 - PART 2 - CLOUD SPEECH:
+# CREATE AN API KEY AND EXPORT AS "API_KEY" VARIABLE IN CLOUD SHELL THEN CREATE THE FOLLOWING JSON
 
+nano request.json
 
 {
   "config": {
@@ -48,6 +53,9 @@ curl -s -X POST -H "Content-Type: application/json" --data-binary @request.json 
 
 gsutil cp result.json gs://YOUR_PROJECT-marking/task4-gcs.result
 
+
+
+# TASK 4 - PART 3 - VIDEO INTELLIGENCE:
 
 
 gcloud iam service-accounts create quickstart
