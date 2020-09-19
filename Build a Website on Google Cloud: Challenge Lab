@@ -53,12 +53,12 @@ kubectl get services
 cd ~/monolith-to-microservices/react-app
 nano .env
 
-When the editor opens, your file should look like this: 
+ 
 REACT_APP_ORDERS_URL=http://localhost:8081/api/orders
 REACT_APP_PRODUCTS_URL=http://localhost:8082/api/products
 
 
-Replace the REACT_APP_PRODUCTS_URL to the new format while replacing with your Orders and Product microservice IP addresses so it matches below:
+
 
 REACT_APP_ORDERS_URL=http://<ORDERS_IP_ADDRESS>/api/orders
 REACT_APP_PRODUCTS_URL=http://<PRODUCTS_IP_ADDRESS>/api/products
