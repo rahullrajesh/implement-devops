@@ -1,0 +1,14 @@
+
+
+
+mkdir deployment_manager
+cd deployment_manager
+gsutil cp gs://spls/gsp302/* .
+gcloud deployment-manager deployments create test --config=qwiklabs.yaml
+
+
+
+gcloud deployment-manager deployments delete test
+
+gcloud deployment-manager deployments create test --config=qwiklabs.yaml
+
