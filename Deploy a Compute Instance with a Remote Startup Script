@@ -1,0 +1,10 @@
+
+gsutil mb gs://<project_id>
+
+
+gsutil cp resources-install-web.sh gs://<project_id>
+gcloud compute instances create example-instance --zone us-central1-a --tags http-server \
+    --metadata startup-script-url=gs://<project_id>/resources-install-web.sh
+
+
+gcloud compute firewall-rules create allow-http --target-tags http-server --source-ranges 0.0.0.0/0 --allow tcp:80
