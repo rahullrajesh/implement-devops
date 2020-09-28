@@ -23,7 +23,6 @@ kubectl expose deployment hello-server \
           --type=LoadBalancer \
           --port 8080
 
-
 cat << EOF > startup.sh
 #! /bin/bash
 apt-get update
