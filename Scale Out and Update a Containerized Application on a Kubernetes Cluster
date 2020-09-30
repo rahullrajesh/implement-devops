@@ -1,3 +1,5 @@
+#WATCH FULL LAB ON : https://www.youtube.com/watch?v=aiSfeGGWvKY
+
 
 gsutil cp gs://sureskills-ql/challenge-labs/ch05-k8s-scale-and-update/echo-web-v2.tar.gz .
 

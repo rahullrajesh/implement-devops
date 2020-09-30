@@ -1,3 +1,5 @@
+#WATCH FULL VIDEO ON : https://www.youtube.com/watch?v=4cRGGbxqymk
+
 gsutil cat gs://cloud-training/gsp318/marking/setup_marking.sh | bash
 gcloud source repos clone valkyrie-app
 cd valkyrie-app
