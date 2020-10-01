@@ -1,3 +1,5 @@
+#WATCH FULL LAB ON : https://www.youtube.com/watch?v=ZZBt6geViXc
+
 python3 analyze-images.py $DEVSHELL_PROJECT_ID $DEVSHELL_PROJECT_ID
 
 

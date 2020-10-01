@@ -1,3 +1,5 @@
+#WATCH FULL VIDEO ON : https://www.youtube.com/watch?v=M4iWdIqZRm8
+
 gcloud compute networks create griffin-dev-vpc --subnet-mode custom
 
 gcloud compute networks subnets create griffin-dev-wp --network=griffin-dev-vpc --region us-east1 --range=192.168.16.0/20
