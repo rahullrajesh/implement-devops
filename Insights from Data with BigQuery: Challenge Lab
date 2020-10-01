@@ -19,7 +19,7 @@ where death_count > 100
 
 SELECT subregion1_name as state, sum(cumulative_confirmed) as total_confirmed_cases 
 FROM `bigquery-public-data.covid19_open_data.covid19_open_data` 
-where country_name="United States of America" and date='2020-04-10'
+where country_name="United States of America" and date='2020-04-10' and subregion1_name is NOT NULL
 group by subregion1_name
 having total_confirmed_cases > 1000
 order by total_confirmed_cases desc
