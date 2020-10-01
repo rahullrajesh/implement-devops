@@ -6,9 +6,38 @@ cd deployment_manager
 gsutil cp gs://spls/gsp302/* .
 gcloud deployment-manager deployments create test --config=qwiklabs.yaml
 
+# Copy the content from Github's qwiklabs.yaml
+# https://github.com/rahullrajesh/implement-devops/blob/master/qwiklabs.yaml
 
+# Edit qwiklabs.yaml
+nano qwiklabs.yaml
+
+# Use CTRL + Shift + 6 to mark the beginning of your block
+# Move cursor with arrow keys to end of your block, the text will be highlighted
+# Use CTRL + K to cut/delete block
+# Save file, use CTRL + X, type Y, Enter
+
+# Copy the content from Github's qwiklabs.jinja
+# https://github.com/rahullrajesh/implement-devops/blob/master/qwiklabs.jinja
+
+# Edit qwiklabs.jinja
+nano qwiklabs.jinja
+
+# Use CTRL + Shift + 6 to mark the beginning of your block
+# Move cursor with arrow keys to end of your block, the text will be highlighted
+# Use CTRL + K to cut/delete block
+# Save file, use CTRL + X, type Y, Enter
 
 gcloud deployment-manager deployments delete test
 
 gcloud deployment-manager deployments create test --config=qwiklabs.yaml
+
+# Wait until the deployment completed
+# Check the newly created vm instance external IP address
+
+gcloud compute instances list
+
+# Copy the EXTERNAL_IP of 'vm-test' instance
+# Paste the IP to the new tab of the browser
+# Make sure you can see the Apache welcome page
 
