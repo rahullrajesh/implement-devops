@@ -1,3 +1,4 @@
+#WATCH FULL VIDEO ON : https://www.youtube.com/watch?v=EOAjT5V8ZqY
 
 gcloud compute instances create nucleus-jumphost \
           --network nucleus-vpc \

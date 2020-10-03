@@ -1,3 +1,6 @@
+#WATCH FULL LAB ON : https://www.youtube.com/watch?v=22TczCBXyys
+
+
 gcloud compute firewall-rules delete open-access
 
 

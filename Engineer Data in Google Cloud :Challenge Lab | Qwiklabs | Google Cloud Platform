@@ -1,3 +1,5 @@
+#WATCH FULL VIDEO ON : https://www.youtube.com/watch?v=gTxcnFIc0Dc
+
 CREATE OR REPLACE TABLE
   taxirides.taxi_training_data AS
 SELECT

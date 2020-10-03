@@ -1,3 +1,4 @@
+#WATCH FULL VIDEO ON :https://www.youtube.com/watch?v=8WMp4K_LVJY
 
 
 gsutil cp gs://sureskills-ql/challenge-labs/ch04-kubernetes-app-deployment/echo-web.tar.gz .
