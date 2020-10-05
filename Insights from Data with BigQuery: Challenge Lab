@@ -176,3 +176,10 @@ WHERE
   AND country_name ="United States of America"
 GROUP BY date
 
+
+After input the '10' query
+Click "Explore Data" > "Explore with Data Studio"
+Authorize your BigQuery in Data Studio
+Save your Data Studio Explorer
+Get Started > Check "I acknowlegde..." > Accept > Yes to All > Done
+Check Your Progress
