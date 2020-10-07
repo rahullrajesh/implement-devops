@@ -30,7 +30,7 @@ nl_client = language.LanguageServiceClient()
 
 # Set up client objects for the vision and translate_v2 API Libraries
 vision_client = vision.ImageAnnotatorClient()
-translate_client = translate_v2.client()
+translate_client = translate_v2.Client()
 
 # Setup the BigQuery dataset and table objects
 dataset_ref = bq_client.dataset('image_classification_dataset')
@@ -53,7 +53,7 @@ for file in files:
         file_content = file.download_as_string()
         
         # TBD: Create a Vision API image object called image_object
-        image_object = vision.types.Image(content=file_content)
+        image_object = vision.Image(content=file_content)
         # Ref: https://googleapis.dev/python/vision/latest/gapic/v1/types.html#google.cloud.vision_v1.types.Image
         
 
