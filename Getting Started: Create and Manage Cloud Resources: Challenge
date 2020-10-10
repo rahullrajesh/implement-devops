@@ -25,7 +25,7 @@
                    --port 8080
           
           
-Step 3:kubect1 get pods
+Step 3:kubectl get pods
 
 Step 4:cat << EOF > startup.sh
        #! /bin/bash
