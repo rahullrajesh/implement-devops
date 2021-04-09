@@ -32,7 +32,7 @@ CREATE USER 'blogadmin'@'%' IDENTIFIED BY 'Password1*';
 GRANT ALL PRIVILEGES ON wordpress.* TO 'blogadmin'@'%';
 FLUSH PRIVILEGES;
 
-
+exit
 
 sudo mysqldump -u root -pPassword1* wordpress > wordpress_backup.sql
 
