@@ -5,7 +5,6 @@ where outputs.output_satoshis = 19499300000000
 
 
 
--- SQL source from https://cloud.google.com/blog/product...
 CREATE OR REPLACE TABLE lab.52 (balance NUMERIC) as
 WITH double_entry_book AS (
    -- debits
@@ -19,7 +18,6 @@ WITH double_entry_book AS (
     array_to_string(outputs.addresses, ",") as address
    , outputs.value as value
    FROM `bigquery-public-data.crypto_bitcoin.outputs` as outputs
-   
 )
 SELECT   
 sum(value) as balance
