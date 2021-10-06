@@ -1,10 +1,14 @@
 #WATCH FULL VIDEO ON : https://www.youtube.com/watch?v=gSVviDjfTEg
 
+ssh to jumphost instance 
+
 cd /work/dm
 
 sed -i s/SET_REGION/us-east1/g prod-network.yaml
 
 gcloud deployment-manager deployments create prod-network --config=prod-network.yaml
+
+exit from vm instance
 
 
 gcloud config set compute/zone us-east1-b
@@ -24,6 +28,12 @@ for F in $(ls *.yaml); do kubectl create -f $F; done
 gcloud config set compute/zone us-east1-b
 
 gcloud compute instances create kraken-admin --network-interface="subnet=kraken-mgmt-subnet" --network-interface="subnet=kraken-prod-subnet"
+
+Create an Alert policy by from monitoring
+1) VM instance
+2) CPU utilization
+
+Add Filter - name of instance = kraken-admin
 
 
 gcloud config set compute/zone us-east1-b
@@ -52,4 +62,3 @@ git commit -a -m "change"
 git tag v1.0.1
 
 git push --tags
-
