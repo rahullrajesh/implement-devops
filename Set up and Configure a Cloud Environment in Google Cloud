@@ -1,14 +1,15 @@
 #WATCH FULL VIDEO ON : https://www.youtube.com/watch?v=M4iWdIqZRm8
 
-gcloud compute networks create griffin-dev-vpc --subnet-mode custom
+Step 1:gcloud compute networks create griffin-dev-vpc --subnet-mode custom
 
-gcloud compute networks subnets create griffin-dev-wp --network=griffin-dev-vpc --region us-east1 --range=192.168.16.0/20
+step2: gcloud compute networks subnets create griffin-dev-wp --network=griffin-dev-vpc --region us-east1 --range=192.168.16.0/20
 
-gcloud compute networks subnets create griffin-dev-mgmt --network=griffin-dev-vpc --region us-east1 --range=192.168.32.0/20
+step3: gcloud compute networks subnets create griffin-dev-mgmt --network=griffin-dev-vpc --region us-east1 --range=192.168.32.0/20
 
 
-gsutil cp -r gs://cloud-training/gsp321/dm .
+step 4:gsutil cp -r gs://cloud-training/gsp321/dm .
 
+step 5:
 cd dm
 
 sed -i s/SET_REGION/us-east1/g prod-network.yaml
@@ -19,26 +20,27 @@ gcloud deployment-manager deployments create prod-network \
 cd ..
 
 
-gcloud compute instances create bastion --network-interface=network=griffin-dev-vpc,subnet=griffin-dev-mgmt  --network-interface=network=griffin-prod-vpc,subnet=griffin-prod-mgmt --tags=ssh --zone=us-east1-b
+step 6: gcloud compute instances create bastion --network-interface=network=griffin-dev-vpc,subnet=griffin-dev-mgmt  --network-interface=network=griffin-prod-vpc,subnet=griffin-prod-mgmt --tags=ssh --zone=us-east1-b
 
-gcloud compute firewall-rules create fw-ssh-dev --source-ranges=0.0.0.0/0 --target-tags ssh --allow=tcp:22 --network=griffin-dev-vpc
+step 7: gcloud compute firewall-rules create fw-ssh-dev --source-ranges=0.0.0.0/0 --target-tags ssh --allow=tcp:22 --network=griffin-dev-vpc
 
-gcloud compute firewall-rules create fw-ssh-prod --source-ranges=0.0.0.0/0 --target-tags ssh --allow=tcp:22 --network=griffin-prod-vpc
+step 8: gcloud compute firewall-rules create fw-ssh-prod --source-ranges=0.0.0.0/0 --target-tags ssh --allow=tcp:22 --network=griffin-prod-vpc
 
 
 
-gcloud sql instances create griffin-dev-db --root-password password --region=us-east1
+step 9: gcloud sql instances create griffin-dev-db --root-password password --region=us-east1
 
-gcloud sql connect griffin-dev-db
+step 10: gcloud sql connect griffin-dev-db
 
-# Cut and paste the SQL
+step 11:# Cut and paste the SQL
 
 CREATE DATABASE wordpress;
 GRANT ALL PRIVILEGES ON wordpress.* TO "wp_user"@"%" IDENTIFIED BY "stormwind_rules";
 FLUSH PRIVILEGES;
 
 
-gcloud container clusters create griffin-dev \
+step 12: 
+   gcloud container clusters create griffin-dev \
   --network griffin-dev-vpc \
   --subnetwork griffin-dev-wp \
   --machine-type n1-standard-4 \
@@ -46,21 +48,22 @@ gcloud container clusters create griffin-dev \
   --zone us-east1-b
 
 
-gcloud container clusters get-credentials griffin-dev --zone us-east1-b
+step 13: gcloud container clusters get-credentials griffin-dev --zone us-east1-b
 
+step 14: 
 cd ~/
 
 gsutil cp -r gs://cloud-training/gsp321/wp-k8s .
 
-cd wp-k8s
+step 15: cd wp-k8s
 
-sed -i s/username_goes_here/wp_user/g wp-env.yaml
+###sed -i s/username_goes_here/wp_user/g wp-env.yaml
 
-sed -i s/password_goes_here/stormwind_rules/g wp-env.yaml
+sed -i s/password_goes_here/stormwind_rules/g wp-env.yaml###
 
-kubectl create -f wp-env.yaml
+step 16: kubectl apply -f wp-env.yaml
 
-gcloud iam service-accounts keys create key.json --iam-account=cloud-sql-proxy@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
+step 17: gcloud iam service-accounts keys create key.json --iam-account=cloud-sql-proxy@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
 
 kubectl create secret generic cloudsql-instance-credentials --from-file key.json
 
@@ -69,6 +72,6 @@ I=$(gcloud sql instances describe griffin-dev-db --format="value(connectionName)
 
 sed -i s/YOUR_SQL_INSTANCE/$I/g wp-deployment.yaml
 
-kubectl create -f wp-deployment.yaml
+step 18: kubectl create -f wp-deployment.yaml
 
-kubectl create -f wp-service.yaml
+step 19: kubectl create -f wp-service.yaml
