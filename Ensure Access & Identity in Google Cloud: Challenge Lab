@@ -1,0 +1,53 @@
+
+gcloud config set compute/zone us-east1-b
+
+nano role-definition.yaml
+
+title: "Edirca Storage Update"
+description: "Add and update objects in Google Cloud Storage buckets"
+includedPermissions:
+- storage.buckets.get
+- storage.objects.get
+- storage.objects.list
+- storage.objects.update
+- storage.objects.create
+
+
+gcloud iam roles create orca_storage_update \
+   --project $DEVSHELL_PROJECT_ID \
+   --file role-definition.yaml
+
+
+gcloud iam service-accounts create orca-private-cluster-sa \
+   --display-name "Orca Private Cluster Service Account"
+
+gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
+   --member serviceAccount:orca-private-cluster-sa@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com --role roles/monitoring.viewer
+
+gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
+   --member serviceAccount:orca-private-cluster-sa@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com --role roles/monitoring.metricWriter
+
+gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
+   --member serviceAccount:orca-private-cluster-sa@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com --role roles/logging.logWriter
+
+
+
+
+
+
+
+gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
+   --member serviceAccount:orca-private-cluster-sa@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com --role projects/$DEVSHELL_PROJECT_ID/roles/orca_storage_update
+
+
+
+
+
+
+
+gcloud container clusters create orca-test-cluster --network orca-build-vpc --subnetwork orca-build-subnet --service-account orca-private-cluster-sa@qwiklabs-gcp-01-73bc421e624d.iam.gserviceaccount.com --enable-master-authorized-networks --master-authorized-networks 192.168.10.2/32 --enable-ip-alias --enable-private-nodes --master-ipv4-cidr 10.142.0.0/28 --enable-private-endpoint
+
+
+
+gcloud container clusters get-credentials orca-test-cluster --internal-ip --zone=us-east1-b
+kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
